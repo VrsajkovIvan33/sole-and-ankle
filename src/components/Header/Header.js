@@ -21,17 +21,27 @@ const Header = () => {
           <NavLink href="/kids">Kids</NavLink>
           <NavLink href="/collections">Collections</NavLink>
         </Nav>
+        <FlexFiller />
       </MainHeader>
     </header>
   );
 };
 
+const FlexFiller = styled.div`
+  flex: 1;
+`;
+
 const MainHeader = styled.div`
   padding: 0 32px;
   border-bottom: 1px solid ${COLORS.gray[300]};
+  display: flex;
+  align-items: baseline;
 `;
 
-const Nav = styled.nav``;
+const Nav = styled.nav`
+  display: flex;
+  gap: 48px;
+`;
 
 const NavLink = styled.a`
   font-size: 1.125rem;
@@ -44,5 +54,9 @@ const NavLink = styled.a`
     color: ${COLORS.secondary};
   }
 `;
+
+// const FlexLogo = styled(Logo)`
+//   flex: 1;
+// `;
 
 export default Header;
