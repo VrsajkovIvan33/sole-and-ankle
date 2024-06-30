@@ -31,31 +31,54 @@ const ShoeCard = ({
       ? 'new-release'
       : 'default'
 
+  const justReleasedFlagStyle = {
+    "new-release": { "--display": "block" },
+    "default": { "--display": "none" },
+    "on-sale": { "--display": "none" },
+  };
+  const saleFlagStyle = {
+    "on-sale": { "--display": "block" },
+    "default": { "--display": "none" },
+    "new-release": { "--display": "none" },
+  };
+  const priceStyle = {
+    "on-sale": { "--text-color": COLORS.gray[700], "--text-decoration": "line-through" },
+    "default": { "--text-color": COLORS.gray[900], "--text-decoration": "inherit" },
+    "new-release": { "--text-color": COLORS.gray[900], "--text-decoration": "inherit" }
+  };
+  const salePriceStyle = {
+    "on-sale": { "--display": "inline" },
+    "default": { "--display": "none" },
+    "new-release": { "--display": "none" }
+  }
+
   return (
     <Link href={`/shoe/${slug}`}>
       <Wrapper>
         <ImageWrapper>
           <Image alt="" src={imageSrc} />
-          <JustReleasedFlag style={{ "--display": variant === "new-release" ? "block" : "none" }}>
+          <JustReleasedFlag style={justReleasedFlagStyle[variant]}>
             Just released!
           </JustReleasedFlag>
-          <SaleFlag style={{ "--display": variant === "on-sale" ? "block" : "none" }}>
+          <SaleFlag style={saleFlagStyle[variant]}>
             Sale
           </SaleFlag>
         </ImageWrapper>
         <Spacer size={12} />
         <Row>
           <Name>{name}</Name>
-          <Price style={{ "--text-decoration": variant === "on-sale" ? "line-through" : "inherit" }}>
+          <Price style={priceStyle[variant]}>
             {formatPrice(price)}
           </Price>
         </Row>
         <Row>
           <ColorInfo>{pluralize('Color', numOfColors)}</ColorInfo>
-          <SalePrice>{formatPrice(salePrice)}</SalePrice>
+          <SalePrice style={salePriceStyle[variant]}>
+            {formatPrice(salePrice)}
+          </SalePrice>
         </Row>
       </Wrapper>
-    </Link>
+    </Link >
   );
 };
 
@@ -88,6 +111,7 @@ const Name = styled.h3`
 `;
 
 const Price = styled.span`
+  color: var(--text-color);
   text-decoration: var(--text-decoration);
 `;
 
