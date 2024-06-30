@@ -42,15 +42,17 @@ const ShoeCard = ({
           <SaleFlag style={{ "--display": variant === "on-sale" ? "block" : "none" }}>
             Sale
           </SaleFlag>
-
         </ImageWrapper>
         <Spacer size={12} />
         <Row>
           <Name>{name}</Name>
-          <Price>{formatPrice(price)}</Price>
+          <Price style={{ "--text-decoration": variant === "on-sale" ? "line-through" : "inherit" }}>
+            {formatPrice(price)}
+          </Price>
         </Row>
         <Row>
           <ColorInfo>{pluralize('Color', numOfColors)}</ColorInfo>
+          <SalePrice>{formatPrice(salePrice)}</SalePrice>
         </Row>
       </Wrapper>
     </Link>
@@ -85,15 +87,19 @@ const Name = styled.h3`
   margin-right: auto;
 `;
 
-const Price = styled.span``;
+const Price = styled.span`
+  text-decoration: var(--text-decoration);
+`;
 
 const ColorInfo = styled.p`
   color: ${COLORS.gray[700]};
+  margin-right: auto;
 `;
 
 const SalePrice = styled.span`
   font-weight: ${WEIGHTS.medium};
   color: ${COLORS.primary};
+  display: var(--display);
 `;
 
 const Flag = styled.div`
