@@ -55,8 +55,4 @@ const NavLink = styled.a`
   }
 `;
 
-// const FlexLogo = styled(Logo)`
-//   flex: 1;
-// `;
-
 export default Header;
