@@ -1,5 +1,6 @@
 import React from 'react';
 import styled from 'styled-components/macro';
+import Header from '../Header/Header';
 
 import { WEIGHTS } from '../../constants';
 
@@ -14,6 +15,11 @@ const Logo = (props) => {
 const Link = styled.a`
   text-decoration: none;
   color: inherit;
+  
+  ${Header} & {
+    flex: 1;
+    margin-right:
+  }
 `;
 
 const Wrapper = styled.h1`
